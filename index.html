@@ -1,61 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="fc:frame" content='{"version":"next","imageUrl":"https://trades-zeta.vercel.app/bigtradeslogo.png","button":{"title":"Start","action":{"type":"launch_frame","name":"Big Trades","url":"https://trades-zeta.vercel.app/","splashImageUrl":"https://trades-zeta.vercel.app/bigtradeslogo.png","splashBackgroundColor":"#1a1a1a"}}}' />
-        <title>Big Trades and Heatmap</title>
-        <link rel="icon" type="image/x-icon" href="./bigtradeslogo.png">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body>
-        <div class="main">
-            <h2 class="head">
-                Real-time Big Trades
-            </h2>
-            <h3 class="head">
-                Binance-BTC
-            </h3>
-            <div id="temp">
-                Wait for a few Seconds...
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="fc:frame"
+      content='{"version":"next","imageUrl":"https://trades-zeta.vercel.app/bigtradeslogo.png","button":{"title":"Start","action":{"type":"launch_frame","name":"Big Trades","url":"https://trades-zeta.vercel.app/","splashImageUrl":"https://trades-zeta.vercel.app/bigtradeslogo.png","splashBackgroundColor":"#1a1a1a"}}}'
+    />
+    <title>Big Trades & Heatmap Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="./bigtradeslogo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class="main">
+      <h2 class="head">Real-Time Big Trades Dashboard</h2>
+      <h3 class="head">Binance BTC Tracker</h3>
+
+      <div id="temp">Loading live data... please wait.</div>
+
+      <button id="pause" class="button">Pause</button>
+
+      <div id="markPrice" class="markPrice">Mark Price: Loading...</div>
+      <div id="oi" class="oi">Open Interest: Loading...</div>
+
+      <div class="oi">Top Traders Long/Short Ratio:</div>
+      <div class="tops-status" id="tops-status"></div>
+
+      <h3 class="bigs">
+        Big Trades (Takers)
+        <span id="alarmEmoji1">
+          <audio id="alarmSound1" src="./alarm/1.mp3"></audio> 🔇
+        </span>
+      </h3>
+      <div id="container1" class="container"></div>
+
+      <h3 class="heatmap">
+        Heatmap (Makers)
+        <span id="alarmEmoji">
+          <audio id="alarmSound" src="./alarm/6.mp3"></audio> 🔇
+        </span>
+      </h3>
+      <div id="container2" class="container"></div>
+        <footer class="footer">
+            <div class="footer-div">
+                <p>© 2025 Big Trades. All rights reserved.</p>
+                <p>
+                <a
+                    href="https://github.com/nitecity/trades"
+                    target="_blank"
+                    rel="noopener"
+                    style="color:#66ccff; text-decoration:none;"
+                >
+                    View Source on GitHub
+                </a>
+                </p>
             </div>
-            <button id="pause" class="button">
-                Pause
-            </button>
-            <div id="markPrice" class="markPrice">
-                Mark Price: Wait...
-            </div>
-            <div id="oi" class="oi">
-                Open Interest: Wait...
-            </div>
-            <div class="oi">
-                Top Traders Long/Short Ratio:
-            </div>
-            <div class="tops-status" id="tops-status"></div>
-            <h3 class="bigs">
-                Big Trades (Takers)
-                <span id="alarmEmoji1"><audio id="alarmSound1" src="./alarm/1.mp3"></audio>
-                    🔇
-                </span>
-            </h3>
-            <div id="container1" class="container"></div>
-            <h3 class="heatmap">
-                Heatmap (Makers) 
-                <span id="alarmEmoji"><audio id="alarmSound" src="./alarm/6.mp3"></audio>
-                    🔇
-                </span>
-            </h3>
-            <div id="container2" class="container"></div>
-        </div>
-        
-        <script type="module">
-            import { sdk } from 'https://esm.sh/@farcaster/frame-sdk'
-            await sdk.actions.ready();
-        </script>
-        
-        <script src="./script.js"></script>
-    </body>
+        </footer>
+    </div>
+
+    
+
+    <script type="module">
+      import { sdk } from "https://esm.sh/@farcaster/frame-sdk";
+      await sdk.actions.ready();
+    </script>
+
+    <script src="./script.js"></script>
+  </body>
 </html>
