@@ -7,11 +7,14 @@ const pause = document.getElementById('pause');
 const temp = document.getElementById('temp');
 const alarmSound = document.getElementById('alarmSound');
 const alarmEmoji = document.getElementById("alarmEmoji");
+const alarmSound1 = document.getElementById("alarmSound1");
+const alarmEmoji1 = document.getElementById("alarmEmoji1");
 
 
 let isPaused = false;
 let intervalId = null;
 let alarm = false;
+let alarm1 = false;
 
 setTimeout( () => {
     temp.classList.add('temp');
@@ -50,6 +53,16 @@ alarmEmoji.addEventListener('click', function () {
     }
 });
 
+alarmEmoji1.addEventListener('click', function () {
+    if (alarm1) {
+        alarm1 = false;
+        alarmEmoji1.innerText = '🔇';
+    } else {
+        alarm1 = true;
+        alarmEmoji1.innerText = '🔊';
+    }
+});
+
 function connect() {
     const socket = new WebSocket('wss://fstream.binance.com/ws/btcusdt@aggTrade/btcusdt@markPrice@1s');
     socket.onopen = () => {
@@ -78,12 +91,19 @@ function connect() {
                         if (sum < 300000) bgColor = 'rgb(53, 1, 1)';
                         else if (sum < 600000) bgColor = 'rgb(101, 2, 2)';
                         else if (sum < 1000000) bgColor = 'rgb(151, 6, 6)';
-                        else { bgColor = 'rgb(255, 7, 7)'; lightText = true; }
+                        else { 
+                            bgColor = 'rgb(255, 7, 7)';
+                            lightText = true; 
+                            if (alarm1) alarmSound1.play();}
                     } else {
                         if (sum < 300000) bgColor = 'rgb(1, 53, 1)';
                         else if (sum < 600000) bgColor = 'rgb(2, 101, 2)';
                         else if (sum < 1000000) bgColor = 'rgb(6, 151, 6)';
-                        else { bgColor = 'rgb(7, 255, 7)'; lightText = true; }
+                        else { 
+                            bgColor = 'rgb(7, 255, 7)';
+                            lightText = true;
+                            if (alarm1) alarmSound1.play();
+                        }
                     }
                 }
 
